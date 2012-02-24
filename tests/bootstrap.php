@@ -25,8 +25,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 mb_internal_encoding('UTF-8');
-require_once 'Org/Heigl/Hyphenator/Hyphenator.php';
-\Org\Heigl\Hyphenator\Hyphenator::registerAutoload();
+require_once 'Org/Heigl/Geo/Util/Autoload.php';
+new \Org\Heigl\Geo\Util\Autoloader();
 
 class UnitTestHelper
 {

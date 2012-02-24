@@ -20,40 +20,25 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+This Module contains Classes to handle Geolocation-Data
+
+The main Part is the Point-Class that references any Point by 
+Latitude/Longitude.
+
+Multiple points can be combined to a Polygon and multiple Polygons can be 
+combined to a Shape.
+
+Such a Polygon or a Shape has a bounding box defined as a Rectangle.
+
+Thats it.
+
+Nothing more.
+
+Oh, and you can convert such a Shape (or multiple shapes if you want) to an SVG
+via Shape::render() by providing an instance of the Svg-Renderer.
  +----------------------------------------------------------------------------+
  | Requirements:                                                              |
  +----------------------------------------------------------------------------+
 
 This package has the following requirements:
 * PHP-Version >= 5.3
-* Multibyte-Extension loaded
-* Input has to be UTF8-encoded.
-
-On loading the \Org\Heigl\Hyphenator\Hyphenator-class the internal encoding for
-the Multibyte-String-Extension will be set to UTF8.
-
- +----------------------------------------------------------------------------+
- | Installation:                                                              |
- +----------------------------------------------------------------------------+
- 
-Eitehr via PEAR or copy the 'Org/Heigl/Hyphenator'-folder somewhere to your 
-PHP-include-directory. More information can be found in the doc-section
-
- +----------------------------------------------------------------------------+
- | Usage:                                                                     |
- +----------------------------------------------------------------------------+
-<?php
-use \Org\Heigl\Hyphenator as h;
-// Create a hyphenator-instance based on a given config-file
-$hyphenator = h\Hyphenator::factory('/path/to/the/config/file.properties');
-
-// And hyphenate a given string
-$hyphenatedText = $hyphenator->hyphenate($string);
-
-echo $hyphenatedText;
-?>
-
- +----------------------------------------------------------------------------+
- | Documentation:                                                              |
- +----------------------------------------------------------------------------+
-More documentation can be found in the 'documentation'-folder

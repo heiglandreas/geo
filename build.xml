@@ -25,16 +25,16 @@
  *
  * This is the ant-buildfile
  *
- * @category  Org_Heigl
- * @package   Org_Heigl_Hyphenator
+ * @category  Geolocation
+ * @package   Org\Heigl\Geo
  * @author    Andreas Heigl <andreas@heigl.org>
- * @copyright 2008-2011 Andreas Heigl<andreas@heigl.org>
+ * @copyright 2008-2012 Andreas Heigl<andreas@heigl.org>
  * @license   http://www.opensource.org/licenses/mit-license.php MIT-License
- * @version   2.0.1
- * @since     24.11.2011
+ * @version   0.0
+ * @since     24.02.2012
  */
 -->
-<project name="Org_Heigl_Hyphenator" default="build" basedir=".">
+<project name="Org\Heigl\Geo" default="build" basedir=".">
 
     <!-- This target deletes all temporary files from the directory -->
     <target name="clean">
@@ -46,7 +46,7 @@
     </target>
 
     <target name="build"
-              depends="sniff, clean, parseDic, test, api, manual, distribute" />
+              depends="sniff, clean, test, api, manual, distribute" />
 
     <target name="test">
         <mkdir dir="${basedir}/build/logs"/>
@@ -88,7 +88,7 @@
             <zipfileset dir="build/api" prefix="documentation/api" />
             <zipfileset dir="build/doc" prefix="documentation/manual" />
             <zipfileset dir="build/phpunit/coverage" prefix="documentation/coverage" />
-            <zipfileset dir="src/Org/Heigl/Hyphenator" prefix="library/Org/Heigl/Hyphenator"/>
+            <zipfileset dir="src/Org/Heigl/Geo" prefix="library/Org/Heigl/Geo"/>
             <fileset dir="." includes="CHANGELOG" />
             <fileset dir="." includes="LICENSE" />
             <fileset dir="." includes="README" />
@@ -104,7 +104,7 @@
             </fileset>
         </delete>
         <exec executable="xsltproc" dir="${basedir}">
-            <arg line="--output build/doc/index.html doc/hyphenator.xsl doc/main.xml "/>
+            <arg line="--output build/doc/index.html doc/geo.xsl doc/main.xml "/>
         </exec>
         <copy todir="${basedir}/build/doc/">
             <fileset dir="${basedir}/doc/inc/"/>
@@ -120,16 +120,6 @@
             <arg value="-n"/>
             <arg value="-p"/>
         	<arg value="."/>
-        </exec>
-    </target>
-	
-    <!--
-    Parse the hyphenation files and create the ini-files
-    -->
-    <target name="parseDic">
-        <exec executable="${basedir}/tools/renderDicts" dir="${basedir}/tools/" failonerror="true"/>
-        <exec executable="git" dir="${basedir}/src/Org/Heigl/Hyphenator/share/files/" failonerror="true">
-            <arg line="diff --quiet --exit-code ."/>
         </exec>
     </target>
 </project>
