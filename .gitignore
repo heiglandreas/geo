@@ -1,0 +1,8 @@
+phpunit.xml
+.settings/*
+build
+.gitconfig
+.gitignore
+.buildpath
+.project
+build.number
