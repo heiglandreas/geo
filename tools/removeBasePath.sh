@@ -4,6 +4,7 @@
 #
 BASE_PATH=$1
 PWD="`pwd`";
-for i in `grep -r $BASE_PATH $PWD | cut -d ":" -f 1`; do 
+for i in `grep -r $BASE_PATH $PWD | cut -d ":" -f 1`; do
+    echo $i;
     sed -i -E "s#$BASE_PATH##g" $i; 
 done;

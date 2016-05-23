@@ -39,7 +39,7 @@
     <!-- This target deletes all temporary files from the directory -->
     <target name="clean">
         <delete includeemptydirs="true">
-            <fileset dir="${basedir}/build">
+            <fileset dir="${project.basedir}/build">
                 <include name="**/*" />
             </fileset>
         </delete>
@@ -49,41 +49,44 @@
               depends="sniff, clean, test, api, manual, distribute" />
 
     <target name="test">
-        <mkdir dir="${basedir}/build/logs"/>
-        <mkdir dir="${basedir}/build/phpunit"/>
-        <mkdir dir="${basedir}/build/phpunit/coverage"/>
+        <mkdir dir="${project.basedir}/build/logs"/>
+        <mkdir dir="${project.basedir}/build/phpunit"/>
+        <mkdir dir="${project.basedir}/build/phpunit/coverage"/>
         <delete includeemptydirs="true" verbose="false">
-            <fileset dir="${basedir}/build/phpunit/coverage">
+            <fileset dir="${project.basedir}/build/phpunit/coverage">
                 <include name="**/*" />
             </fileset>
         </delete>
-        <exec executable="phpunit" dir="${basedir}/tests" failonerror="on"/>
-        <exec executable="${basedir}/tools/removeBasePath.sh" dir="${basedir}/build/phpunit/coverage" failonerror="true">
-            <arg line="${basedir}/src/"/>
+        <exec executable="${project.basedir}/vendor/bin/phpunit" >
+            <arg value="-c"/>
+            <arg value="phpunit.xml.dist"/>
+        </exec>
+        <exec executable="${project.basedir}/tools/removeBasePath.sh" dir="${project.basedir}/build/phpunit/coverage">
+            <arg value="${project.basedir}/src"/>
         </exec>
     </target>
 
     <target name="api">
-        <mkdir dir="${basedir}/build/api"/>
-        <exec executable="docblox" dir="${basedir}" failonerror="on"/>
+        <mkdir dir="${project.basedir}/build/api"/>
+        <exec executable="${project.basedir}/vendor/bin/phpdoc" dir="${project.basedir}"/>
     </target>
     
     <target name="distribute">
         <buildnumber />
         <property file="build.number" />
-        <mkdir dir="${basedir}/dist"/>
-        <exec executable="${basedir}/tools/createPackage" dir="${basedir}/src" failonerror="true">
+        <mkdir dir="${project.basedir}/dist"/>
+        <exec executable="${project.basedir}/tools/createPackage" dir="${project.basedir}/src">
             <arg value="make"/>
         </exec>
-        <exec executable="pear" dir="${basedir}/src">
+        <exec executable="pear" dir="${project.basedir}/src">
             <arg value="package"/>
         </exec>
-        <move todir="${basedir}/dist">
-            <fileset dir="${basedir}/src">
+        <move todir="${project.basedir}/dist">
+            <fileset dir="${project.basedir}/src">
                 <include name="**/*.tgz"/>
             </fileset>
         </move>
-    	<delete file="${basedir}/src/package.xml"/>
+    	<delete file="${project.basedir}/src/package.xml"/>
         <zip destfile="dist/Org_Heigl_Hyphenator-Build_${build.number}.zip">
             <zipfileset dir="build/api" prefix="documentation/api" />
             <zipfileset dir="build/doc" prefix="documentation/manual" />
@@ -93,21 +96,21 @@
             <fileset dir="." includes="LICENSE" />
             <fileset dir="." includes="README" />
         </zip>
-        <antcall target="clean"/>
+        <phingcall target="clean"/>
     </target>
 
     <target name="manual">
-        <mkdir dir="${basedir}/build/doc"/>
+        <mkdir dir="${project.basedir}/build/doc"/>
         <delete includeemptydirs="true" verbose="true">
-            <fileset dir="${basedir}/build/doc">
+            <fileset dir="${project.basedir}/build/doc">
                 <include name="**/*" />
             </fileset>
         </delete>
-        <exec executable="xsltproc" dir="${basedir}">
+        <exec executable="xsltproc" dir="${project.basedir}">
             <arg line="--output build/doc/index.html doc/geo.xsl doc/main.xml "/>
         </exec>
-        <copy todir="${basedir}/build/doc/">
-            <fileset dir="${basedir}/doc/inc/"/>
+        <copy todir="${project.basedir}/build/doc/">
+            <fileset dir="${project.basedir}/doc/inc/"/>
         </copy>
     </target>
     
@@ -115,8 +118,8 @@
     Check the code using phpcs using the heigl.org-Standard
     -->
     <target name="sniff">
-        <exec executable="phpcs" dir="${basedir}/src" failonerror="true">
-            <arg value="--standard=mdv"/>
+        <exec executable="phpcs" dir="${project.basedir}/src">
+            <arg value="--standard=HeiglOrg"/>
             <arg value="-n"/>
             <arg value="-p"/>
         	<arg value="."/>

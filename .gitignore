@@ -6,3 +6,5 @@ build
 .buildpath
 .project
 build.number
+
+/vendor/

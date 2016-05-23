@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./bootstrap.php">
-    <testsuite name="Org_Heigl_Hyphenator Test-Suite">
-        <directory>./Org</directory>
+<phpunit bootstrap="./vendor/autoload.php">
+    <testsuite name="Org\Heigl\Geo Test-Suite">
+        <directory>./tests</directory>
     </testsuite>
 
     <groups>
@@ -10,11 +10,17 @@
         </exclude>
     </groups>
 
+	<filter>
+		<whitelist>
+			<directory suffix=".php">src</directory>
+		</whitelist>
+	</filter>
+
     <logging>
         <!-- 
             Adapt these paths to your special needs 
         -->
-	    <log type="coverage-html" target="../build/phpunit/coverage" charset="UTF-8"
+	    <log type="coverage-html" target="build/phpunit/coverage" charset="UTF-8"
 	         yui="true" highlight="false"
 	         lowUpperBound="35" highLowerBound="70"/>
 	    <log type="coverage-xml" target="../build/phpunit/coverage.xml"/>
