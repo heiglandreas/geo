@@ -18,8 +18,8 @@ env:
     - SITE_URL: https://heiglandreas.github.io/geo
     - GH_USER_NAME: "Andreas Heigl"
     - GH_USER_EMAIL: andreas@heigl.org
-    - GH_REF: github.com/heiglandreas/geo.git
-    - secure: ""
+    - GH_REF: github.com:heiglandreas/geo.git
+    - ENCRYPTION_LABEL: "0fdf1d4553bd"
 
 matrix:
   fast_finish: true
