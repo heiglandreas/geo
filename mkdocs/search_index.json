@@ -1,0 +1,39 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Org\\Heigl\\Geo - Manual\n\n\nIntroduction\n\n\n\\Org\\Heigl\\Geo is a package to parse coordinates and create graphical\nrepresentations from them.\n\n\nI mainly created the package in the first place to read a file I obtained\nfrom OpenStreetmap.org and create an SVG-file from it.\n\n\nInstallation\n\n\nYou should install this package using \ncomposer\n.\n\n\ncomposer require org_heigl/geo\n\n\n\nDocumentation\n\n\nThere is also an \nAPI-Documentation\n and\nyou can have a look at the latest \nCode-Coverage", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#orgheiglgeo-manual", 
+            "text": "", 
+            "title": "Org\\Heigl\\Geo - Manual"
+        }, 
+        {
+            "location": "/#introduction", 
+            "text": "\\Org\\Heigl\\Geo is a package to parse coordinates and create graphical\nrepresentations from them.  I mainly created the package in the first place to read a file I obtained\nfrom OpenStreetmap.org and create an SVG-file from it.", 
+            "title": "Introduction"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "You should install this package using  composer .  composer require org_heigl/geo", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#documentation", 
+            "text": "There is also an  API-Documentation  and\nyou can have a look at the latest  Code-Coverage", 
+            "title": "Documentation"
+        }, 
+        {
+            "location": "/usage/", 
+            "text": "Usage\n\n\nTBD", 
+            "title": "Usage Scenarios"
+        }, 
+        {
+            "location": "/usage/#usage", 
+            "text": "TBD", 
+            "title": "Usage"
+        }
+    ]
+}
