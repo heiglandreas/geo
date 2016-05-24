@@ -12,7 +12,8 @@
     "require-dev": {
         "phpunit/phpunit": "^5.3",
         "phpdocumentor/phpdocumentor": "^2.9",
-        "phing/phing": "^2.14"
+        "phing/phing": "^2.14",
+        "fabpot/php-cs-fixer": "^1.11"
     },
     "autoload" : {
         "psr-4" : {
@@ -23,5 +24,16 @@
         "psr-4" : {
             "Org\\Heigl\\Geotest\\" : "tests/"
         }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "upload-coverage": "coveralls -v",
+        "cs-check": "php-cs-fixer --version && php-cs-fixer fix -v --diff --dry-run",
+        "cs-fix": "php-cs-fixer fix -v",
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-clover clover.xml"
     }
 }
