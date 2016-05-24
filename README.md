@@ -1,5 +1,9 @@
 # Org\Heigl\Geo
 
+[![Build Status](https://travis-ci.org/heiglandreas/geo.svg?branch=master)](https://travis-ci.org/heiglandreas/geo)
+[![Coverage Status](https://coveralls.io/repos/github/heiglandreas/geo/badge.svg?branch=master)](https://coveralls.io/github/heiglandreas/geo?branch=master)
+
+
 This Module contains Classes to handle Geolocation-Data
 
 ## Usage
