@@ -6,6 +6,8 @@
 
 This Module contains Classes to handle Geolocation-Data
 
+[Documentation](https://heiglandreas.github.io/geo/)
+
 ## Usage
 
 The main Part is the Point-Class that references any Point by 
